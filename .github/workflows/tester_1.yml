@@ -1,0 +1,116 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Test1
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    # Runs a single command using the runners shell
+    - name: Run a one-line script
+      run: echo Hello, world!
+
+    # Runs a set of commands using the runners shell
+    - name: Run a multi-line script
+      run: |
+        echo Add other actions to build,
+        echo test, and deploy your project.
+
+    #- name: Setup Java JDK
+  uses: actions/setup-java@v1.3.0
+  with:
+    # The Java version to make available on the path. Takes a whole or semver Java version, or 1.x syntax (e.g. 1.8 => Java 8.x)
+    java-version: 
+    # The package type (jre, jdk, jdk+fx)
+    java-package: # optional, default is jdk
+    # The architecture (x86, x64) of the package.
+    architecture: # optional, default is x64
+    # Path to where the compressed JDK is located. The path could be in your source repository or a local path on the agent.
+    jdkFile: # optional
+    # ID of the distributionManagement repository in the pom.xml file. Default is `github`
+    server-id: # optional
+    # Environment variable name for the username for authentication to the Apache Maven repository. Default is $GITHUB_ACTOR
+    server-username: # optional
+    # Environment variable name for password or token for authentication to the Apache Maven repository. Default is $GITHUB_TOKEN
+    server-password: # optional
+    # Path to where the settings.xml file will be written. Default is ~/.m2.
+    settings-path: # optional
+    
+    #- name: First interaction
+  uses: actions/first-interaction@v1.0.0
+  with:
+    # Token for the repo. Can be passed in using {{ secrets.GITHUB_TOKEN }}
+    repo-token: 
+    # Comment to post on an individuals first issue
+    issue-message: # optional
+    # Comment to post on an individuals first pull request
+    pr-message: # optional
+    
+    #- name: Android Emulator Runner
+  uses: ReactiveCircus/android-emulator-runner@v2.8.0
+  with:
+    # API level of the platform and system image - e.g. 23 for Android Marshmallow, 29 for Android 10
+    api-level: 
+    # target of the system image - default or google_apis
+    target: # optional, default is default
+    # CPU architecture of the system image - x86 or x86_64
+    arch: # optional, default is x86
+    # hardware profile used for creating the AVD - e.g. `Nexus 6`
+    profile: # optional
+    # custom AVD name used for creating the Android Virtual Device
+    avd-name: # optional, default is test
+    # command-line options used when launching the emulator - e.g. `-no-window -no-snapshot -camera-back emulated`
+    emulator-options: # optional, default is -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+    # whether to disable animations - true or false
+    disable-animations: # optional, default is true
+    # build number of a specific version of the emulator binary to use - e.g. `6061023` for emulator v29.3.0.0
+    emulator-build: # optional
+    # A custom working directory - e.g. `./android` if your root Gradle project is under the `./android` sub-directory within your repository
+    working-directory: # optional
+    # version of NDK to install - e.g. 21.0.6113669
+    ndk: # optional
+    # version of CMake to install - e.g. 3.10.2.4988404
+    cmake: # optional
+    # custom script to run - e.g. `./gradlew connectedCheck`
+    script: 
+    
+    #- name: command testing action
+  uses: MeilCli/test-command-action@v2
+  with:
+    # execute command
+    command: 
+    # expect command output, regex value
+    expect_regex: # optional
+    # expect command output, include value
+    expect_contain: # optional
+    
+    #- name: Setup Ruby for use with actions
+  uses: actions/setup-ruby@v1.0.0
+  with:
+    # Version range or exact version of a Ruby version to use.
+    version: # optional, default is >= 2.4
+    
+    #- name: Cleankeeper
+  uses: cometkim/cleankeeper@v1.2.0
+    
+    #- name: All in one project
+  uses: masutaka/github-actions-all-in-one-project@1.1.0
+    
+    #- name: Test Action
+  uses: drudzikatlassian/test-action@v0.0.1-alpha
